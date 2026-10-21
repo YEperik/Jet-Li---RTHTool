@@ -1,0 +1,10 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 24, "patch": 0 },
+  "configurePresets": [
+    { "name": "default", "displayName": "Default development build", "generator": "Ninja", "binaryDir": "${sourceDir}/build", "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo", "RTH_BUILD_TESTS": "ON" } },
+    { "name": "sanitizers", "displayName": "Debug build with ASan/UBSan", "inherits": "default", "binaryDir": "${sourceDir}/build-sanitizers", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "RTH_ENABLE_SANITIZERS": "ON" } }
+  ],
+  "buildPresets": [ { "name": "default", "configurePreset": "default" }, { "name": "sanitizers", "configurePreset": "sanitizers" } ],
+  "testPresets": [ { "name": "default", "configurePreset": "default", "output": { "outputOnFailure": true } }, { "name": "sanitizers", "configurePreset": "sanitizers", "output": { "outputOnFailure": true } } ]
+}
